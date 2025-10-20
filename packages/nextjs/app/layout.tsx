@@ -5,7 +5,7 @@ import "~~/styles/globals.css";
 import { getMetadata } from "~~/utils/helper/getMetadata";
 
 export const metadata = getMetadata({
-  title: "Zama Template",
+  title: "Crypto Seer",
   description: "Built with FHEVM",
 });
 
@@ -28,3 +28,4 @@ const DappWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default DappWrapper;
+

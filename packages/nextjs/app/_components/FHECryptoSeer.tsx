@@ -118,7 +118,7 @@ export const FHECryptoSeer = () => {
             🔮 FHE CryptoSeer
           </h1>
           <p className="text-center text-gray-600 mb-10">
-            Predict the <span className="text-purple-500 font-semibold">crypto project</span> that will shine in 2026 ✨
+            Predict the <span className="text-purple-500 font-semibold">crypto project</span> that will shine in 2025 ✨
           </p>
 
           {!isConnected ? (

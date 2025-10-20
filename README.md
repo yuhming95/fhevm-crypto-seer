@@ -1,28 +1,34 @@
-# FHEVM React Template
+# FHECryptoSeer - Encrypted Crypto Prediction dApp
 
-A minimal React frontend template for building FHEVM-enabled decentralized applications (dApps). This template provides a simple development interface for interacting with FHEVM smart contracts, specifically the `FHECounter.sol` contract.
+A minimal React frontend template for building **FHEVM-enabled decentralized applications (dApps)**.  
+This project allows users to privately predict which crypto project will succeed most in 2025 using fully homomorphic encryption (FHE).
 
-## 🚀 What is FHEVM?
+## Features
 
-FHEVM (Fully Homomorphic Encryption Virtual Machine) enables computation on encrypted data directly on Ethereum. This template demonstrates how to build dApps that can perform computations while keeping data private.
+- Submit **encrypted predictions** for the top crypto project of 2025.
+- Update your prediction anytime before the reveal.
+- View your own encrypted prediction.
+- Check if a user has submitted a prediction.
+- All predictions remain encrypted on-chain for privacy.
 
-## ✨ Features
+## Smart Contract
 
-- **🔐 FHEVM Integration**: Built-in support for fully homomorphic encryption
-- **⚛️ React + Next.js**: Modern, performant frontend framework
-- **🎨 Tailwind CSS**: Utility-first styling for rapid UI development
-- **🔗 RainbowKit**: Seamless wallet connection and management
-- **🌐 Multi-Network Support**: Works on both Sepolia testnet and local Hardhat node
-- **📦 Monorepo Structure**: Organized packages for SDK, contracts, and frontend
+The main contract is `FHECryptoSeer.sol`:
 
-## 📋 Prerequinextjss
+- **predict**: Submit a new encrypted prediction (requires FHE input proof).  
+- **updatePrediction**: Update an existing prediction.  
+- **getMyPrediction**: Get your encrypted prediction.  
+- **getUserPrediction**: Get any user's encrypted prediction (still encrypted).  
+- **hasPredicted**: Check if a user has already submitted a prediction.  
 
-Before you begin, ensure you have:
+Built using the `@fhevm/solidity` library and SepoliaConfig.
 
-- **Node.js** (v18 or higher)
-- **pnpm** package manager
-- **MetaMask** browser extension
-- **Git** for cloning the repository
+## Frontend
+
+- React + TailwindCSS frontend.
+- Uses `@fhevm-sdk` and `wagmi` for Ethereum and FHEVM interactions.
+- Connect wallet via RainbowKit.
+- Display encrypted predictions and allow updates.
 
 ## 🛠️ Quick Start
 
@@ -124,7 +130,7 @@ For more details, see the [MetaMask development guide](https://docs.metamask.io/
 This template uses a monorepo structure with three main packages:
 
 ```
-fhevm-react-template/
+fhevm-crypto-seer/
 ├── packages/
 │   ├── fhevm-hardhat-template/    # Smart contracts & deployment
 │   ├── fhevm-sdk/                 # FHEVM SDK package
@@ -134,8 +140,8 @@ fhevm-react-template/
 
 ### Key Components
 
-#### 🔗 FHEVM Integration (`packages/nextjs/hooks/fhecounter-example/`)
-- **`useFHECounterWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
+#### 🔗 FHEVM Integration (`packages/nextjs/hooks`)
+- **`useFHECryptoSeerWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
 - Essential hooks for FHEVM-enabled smart contract communication
 - Easily copyable to any FHEVM + React project
 
