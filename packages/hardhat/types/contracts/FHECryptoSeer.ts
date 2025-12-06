@@ -23,14 +23,18 @@ import type {
 export interface FHECryptoSeerInterface extends Interface {
   getFunction(
     nameOrSignature:
+      | "confidentialProtocolId"
       | "getMyPrediction"
       | "getUserPrediction"
       | "hasPredicted"
       | "predict"
-      | "protocolId"
       | "updatePrediction"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "confidentialProtocolId",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "getMyPrediction",
     values?: undefined
@@ -48,14 +52,14 @@ export interface FHECryptoSeerInterface extends Interface {
     values: [BytesLike, BytesLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "protocolId",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "updatePrediction",
     values: [BytesLike, BytesLike]
   ): string;
 
+  decodeFunctionResult(
+    functionFragment: "confidentialProtocolId",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "getMyPrediction",
     data: BytesLike
@@ -69,7 +73,6 @@ export interface FHECryptoSeerInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "predict", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "protocolId", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "updatePrediction",
     data: BytesLike
@@ -119,6 +122,8 @@ export interface FHECryptoSeer extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  confidentialProtocolId: TypedContractMethod<[], [bigint], "view">;
+
   getMyPrediction: TypedContractMethod<[], [string], "view">;
 
   getUserPrediction: TypedContractMethod<[user: AddressLike], [string], "view">;
@@ -131,8 +136,6 @@ export interface FHECryptoSeer extends BaseContract {
     "nonpayable"
   >;
 
-  protocolId: TypedContractMethod<[], [bigint], "view">;
-
   updatePrediction: TypedContractMethod<
     [inputEuint32: BytesLike, inputProof: BytesLike],
     [void],
@@ -143,6 +146,9 @@ export interface FHECryptoSeer extends BaseContract {
     key: string | FunctionFragment
   ): T;
 
+  getFunction(
+    nameOrSignature: "confidentialProtocolId"
+  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "getMyPrediction"
   ): TypedContractMethod<[], [string], "view">;
@@ -159,9 +165,6 @@ export interface FHECryptoSeer extends BaseContract {
     [void],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "protocolId"
-  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "updatePrediction"
   ): TypedContractMethod<

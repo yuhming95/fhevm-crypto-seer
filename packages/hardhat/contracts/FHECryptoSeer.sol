@@ -2,11 +2,11 @@
 pragma solidity ^0.8.24;
 
 import {FHE, euint32, externalEuint32} from "@fhevm/solidity/lib/FHE.sol";
-import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
+import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 
 /// @title FHECryptoSeer - Encrypted Crypto Prediction Contract
 /// @notice Users can privately predict which crypto project will succeed most in 2025.
-contract FHECryptoSeer is SepoliaConfig {
+contract FHECryptoSeer is ZamaEthereumConfig {
     mapping(address => euint32) private _encryptedPredictions;
     mapping(address => bool) private _hasPredicted;
 
